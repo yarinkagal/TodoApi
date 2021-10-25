@@ -27,19 +27,34 @@ public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
     return await _context.TodoItems
         .Select(x => ItemToDTO(x))
         .ToListAsync();
+
+    // return await new TodoItemDTO
+    // {
+    //     Id = 234,
+    //     Name = "check name",
+    //     IsComplete = false
+    // }];
 }
 
 [HttpGet("{id}")]
 public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
 {
-    var todoItem = await _context.TodoItems.FindAsync(id);
+    // var todoItem = await _context.TodoItems.FindAsync(id);
 
-    if (todoItem == null)
+    // if (todoItem == null)
+    // {
+    //     return NotFound();
+    // }
+
+    // return ItemToDTO(todoItem);
+
+
+    return new TodoItemDTO
     {
-        return NotFound();
-    }
-
-    return ItemToDTO(todoItem);
+        Id = 234,
+        Name = "check name",
+        IsComplete = false
+    };
 }
 
 [HttpPut("{id}")]
